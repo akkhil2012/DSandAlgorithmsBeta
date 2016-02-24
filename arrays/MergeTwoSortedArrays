@@ -1,0 +1,34 @@
+package beta.array;
+
+public class MergeTwoSortedArrays {
+	public static void merge(int[] major, int[] minor) {
+		int i = 0;
+		int j = 0;
+		while (i < major.length && j < minor.length) {
+			if (major[i] < minor[j]) {
+				if (major[i] == 0) {
+					major[i] = minor[j];
+					i++;
+					j++;
+				} else {
+					i++;
+				}
+			}
+				else {
+				int temp = major[i];
+				major[i] = minor[j];
+				minor[j] = temp;
+				i++;
+			}
+		}
+		for (int k : major) {
+			System.out.println(" " + k);
+		}
+	}
+
+	public static void main(String args[]) {
+		int[] major = { 2, 8, 0, 0, 0, 13, 0, 15, 20 };
+		int[] minor = { 5, 7, 9 ,19};
+		merge(major, minor);
+	}
+}
