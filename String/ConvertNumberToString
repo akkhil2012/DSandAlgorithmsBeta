@@ -1,0 +1,79 @@
+package beta.string;
+
+import java.util.ArrayList;
+
+public class ConvertNumberToString {
+	private StringBuffer getAlphabetic(int input, int length) {
+		int j = 0;
+		String arrTwos[] = { "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty" };
+		String arrOnes[] = { "", "one", " two", "three", "four", "five", "six", "seven", "eight", "nine" };
+		if (length == 3) {
+			for (j = 100; j < 1000; j = j + 100) {
+				if (input % j == 0) {
+					break;
+				}
+			}
+			StringBuffer strOne = new StringBuffer(arrOnes[j / 10]);
+			return strOne;
+		} else if (length == 2) {
+			for (j = 20; j < 100; j++) {
+				if (input % j == 0) {
+					break;
+				}
+			}
+
+			StringBuffer strTwo = new StringBuffer(arrTwos[j % 10]);
+			StringBuffer strOne = new StringBuffer(arrOnes[j / 10]);
+
+			return strOne.append(strTwo);
+
+		} else {
+			String arr[] = { "three", "four" };
+			return new StringBuffer("thirty");
+		}
+
+	}
+
+	public String convert(int input) {
+		int i = 1;
+		int length = 0;
+
+		ArrayList<Integer> array = new ArrayList<Integer>();
+		do {
+			array.add(input % 10);
+			input /= 10;
+		} while (input > 0);
+
+		/*
+		 * while(input/i>1){ i = i*10; length++; }
+		 */
+		System.out.println(" length is " + array.size());
+
+		StringBuffer word = new StringBuffer();
+
+		StringBuffer convertedWord = new StringBuffer();
+
+		while (array.size() > 0) {
+			if (array.size() == 4) {
+				word = getAlphabetic(input, length);
+				word.append("thousand");
+			} else if (array.size() == 3) {
+				word = getAlphabetic(input, length);
+				word.append("hundred");
+			} else if (array.size() == 2) {
+				word = getAlphabetic(input, length);
+			}
+			array.remove(array.size()-1);
+		}
+		convertedWord.append(word);
+		return convertedWord.toString();
+	}
+
+	public static void main(String args[]) {
+
+		int input = 132;
+
+		System.out.println(" Numeric to word ---- >" + new ConvertNumberToString().convert(input));
+	}
+
+}
