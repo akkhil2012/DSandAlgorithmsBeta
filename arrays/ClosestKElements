@@ -1,0 +1,46 @@
+package beta.array;
+
+public class FindClosestKElements {
+	public void findClosest(int[] arr, int val, int k) {
+		int mid = isElementPresent(arr, val, 0, arr.length - 1);
+		if (mid != -1) {
+			System.out.println(" element is present ");
+			int i = 1;
+			int j = 1;
+			while (k > 0) {
+				if (Math.abs(arr[mid] - arr[mid - j]) > (Math.abs(arr[mid] - arr[mid + i]))) {
+					System.out.print(" " + arr[mid + i]);
+					i++;
+				} else {
+					System.out.print(" " + arr[mid - j]);
+					j++;
+				}
+				k--;
+			}
+		} else {
+			System.out.println(" element is absent ");
+		}
+	}
+
+	public int isElementPresent(int[] arr, int val, int low, int high) {
+		int mid = (high + low) / 2;
+		if (low <= high) {
+			if (arr[mid] > val) {
+				return isElementPresent(arr, val, low, mid - 1);
+			} else if (arr[mid] < val) {
+				return isElementPresent(arr, val, mid + 1, high);
+			} else
+				return mid;
+
+		}
+		return -1;
+
+	}
+
+	public static void main(String args[]) {
+
+		int[] arr = { 12, 16, 22, 30, 35, 39, 42, 45, 48, 50, 53, 55, 56 };
+
+		new FindClosestKElements().findClosest(arr, 35, 4);
+	}
+}
