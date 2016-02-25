@@ -1,0 +1,28 @@
+package beta.array;
+
+public class TwoSmallestInArray {
+	public void findTwoNumbers(int[] arr){
+		int smallest = arr[0];
+		int smaller = arr[1];
+		if(smaller < smallest){
+			smallest = smaller;
+			smaller = arr[0];
+		}
+		for(int i=1;i<arr.length;i++){
+			if(arr[i]<smallest ){
+				smaller = smallest;
+				smallest = arr[i];
+			}else if(arr[i]<smaller && arr[i]!=smallest){
+				smaller = arr[i];
+			}
+		}
+		System.out.print(" smaller " + smaller+" smallest " + smallest);
+	}
+	
+	
+	
+	public static void main(String args[]) {
+		int[] arr = {12, 13, 1, 10, 34, 1};
+		new TwoSmallestInArray().findTwoNumbers(arr);
+	}
+}
