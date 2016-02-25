@@ -1,0 +1,56 @@
+package beta.array;
+
+public class DutchProblem {
+	public void sort(int[] arr) {
+		int i = 0;
+		int high = arr.length - 1;
+		int temp;
+		for (int j = 0; j < arr.length; j++) {
+			//if (high > 0 && i < arr.length - 1) {
+				while (arr[i] == 0) {
+					i++;
+				}
+
+				while (arr[high] == 2) {
+					high--;
+				}
+
+				if (arr[i] == 2 && arr[high] == 0) {
+					temp = arr[i];
+					arr[i] = arr[high];
+					arr[high] = temp;
+					i++;
+					high--;
+
+				} else if (arr[i] == 1 && arr[high] == 0) {
+					temp = arr[i];
+					arr[i] = arr[high];
+					arr[high] = temp;
+					i++;
+					high--;
+				} else if (arr[i] == 2 && arr[high] == 1) {
+					temp = arr[i];
+					arr[i] = arr[high];
+					arr[high] = temp;
+					i++;
+					high--;
+				}
+		/*		i++;
+				high--;
+		*/	//}
+		}
+
+		for (int k : arr) {
+			System.out.print(" " + k);
+
+		}
+
+	}
+
+	public static void main(String args[]) {
+
+		int[] arr = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
+
+		new DutchProblem().sort(arr);
+	}
+}
