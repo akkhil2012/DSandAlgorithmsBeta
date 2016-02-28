@@ -12,6 +12,11 @@ public class SelectionSort {
 					min = j;
 				}
 			}
+			
+			/*
+			arr[i] = arr[min] - arr[i];
+			arr[min] = arr[min] - arr[i];
+			arr[i] = arr[min] + arr[i];*/
 			temp = arr[i];
 			arr[i] = arr[min];
 			arr[min] = temp;
