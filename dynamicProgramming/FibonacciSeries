@@ -1,7 +1,9 @@
 package beta.dynamic;
+
 /*
- Done with O(n) space and O(n) time Complexity
-*/
+ * 
+ *  Down - top approach
+ */
 public class FibbinacciSeries {
 	public void getSeries(int number){
 		int[] arr = new int[number];
@@ -16,8 +18,27 @@ public class FibbinacciSeries {
 		}
 	}
 	
-	public static void main(String args[]){
-		new FibbinacciSeries().getSeries(89);
+/*
+ * 
+ * Top - Down Approach	
+ */
+	
+	
+	public int getSeriesOptimaly(int number){
+		int[] finalArray = new int[number];
+		if(number == 0) return 0;
+		if(number == 1) return 1;
+		if(finalArray[number]!=0)
+			return finalArray[number];
 		
+		return finalArray[number] = getSeriesOptimaly(number-1) + getSeriesOptimaly(number-2);
+		
+	}
+	
+	
+	public static void main(String args[]){
+		//new FibbinacciSeries().getSeries(89);
+		
+		System.out.print(" Fibbonacci series is " + new FibbinacciSeries().getSeriesOptimaly(89));
 	}
 }
