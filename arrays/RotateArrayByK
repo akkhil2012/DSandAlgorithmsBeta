@@ -1,0 +1,32 @@
+package beta.array;
+
+public class RotateArrayByK {
+
+	public void rotateByK(int[] arr, int k) {
+		int count = 0;
+		while (count < k) {
+			int i = 0;
+			int temp = arr[0];
+			for (; i < arr.length - 1; i++) { // avoid using while rather use for loop .... also better to disintegrate the method into two
+				arr[i] = arr[i + 1];
+			}
+			arr[i] = temp;
+
+			count++;
+		}
+
+		System.out.println(" After array rotation ");
+
+		for (int p : arr) {
+			System.out.print(" " + p);
+		}
+
+	}
+
+	public static void main(String args[]) {
+		int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+
+		new RotateArrayByK().rotateByK(arr, 2);
+
+	}
+}
