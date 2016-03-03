@@ -1,0 +1,48 @@
+package beta.binaryTree;
+
+import java.util.Stack;
+
+import beta.binaryTree.BinaryTree.Node;
+
+public class LeastCommonAncestor {
+
+	public Node getLeastCommonAncestor(Node root, Node first, Node second) {
+
+		if (root == null)
+			return null;
+
+		if (root.data == first.data || root.data == second.data)
+			return root;
+
+		Node leftNode = getLeastCommonAncestor(root.left, first, second);
+
+		Node rightNode = getLeastCommonAncestor(root.right, first, second);
+
+		if (leftNode != null && rightNode != null)
+			return root;
+		else
+			return leftNode != null ? leftNode : rightNode;
+
+	}
+
+	public static void main(String args[]) {
+		BinaryTree<Integer> binaryTree = new BinaryTree<Integer>();
+		binaryTree.insertNode(4);
+		binaryTree.insertNode(3);
+		binaryTree.insertNode(5);
+		binaryTree.insertNode(2);
+		binaryTree.insertNode(6);
+		binaryTree.insertNode(4);
+		binaryTree.insertNode(7);
+
+		binaryTree.displayBinaryTree(binaryTree.root);
+
+		Node first = new Node(2);
+		Node sec = new Node(5);
+
+		System.out.println(" Least common ancestor is "
+				+ new LeastCommonAncestor().getLeastCommonAncestor(binaryTree.root, first, sec).data);
+
+	}
+
+}
