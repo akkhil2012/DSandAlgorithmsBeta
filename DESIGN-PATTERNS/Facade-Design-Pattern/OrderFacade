@@ -1,0 +1,41 @@
+
+package com.struc.facade;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import com.iluwatar.facade.DwarvenMineWorker;
+
+public class OrderFacade {
+
+	final List<OrdersWorkers> workers;
+
+	public OrderFacade() {
+		workers = new ArrayList<>();
+		workers.add(new OrderProcessor());
+		workers.add(new OrderDispatcher());
+		workers.add(new BillGenerator());
+	}
+
+	public void startNewDay() {
+		startProcessing(workers, OrdersWorkers.Action.WAKE_UP, OrdersWorkers.Action.GO_TO_MINE);
+	}
+
+	public void processOrders() {
+		startProcessing(workers, OrdersWorkers.Action.WORK);
+	}
+
+	public void endDay() {
+		startProcessing(workers, OrdersWorkers.Action.GO_HOME, OrdersWorkers.Action.GO_TO_SLEEP);
+	}
+
+	private void startProcessing(Collection<OrdersWorkers> collections, OrdersWorkers.Action... actions) {
+		for (OrdersWorkers ordersWorkers : collections) {
+			ordersWorkers.action(actions);
+		}
+
+	}
+
+}
