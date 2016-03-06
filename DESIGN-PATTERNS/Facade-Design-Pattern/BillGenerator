@@ -1,0 +1,17 @@
+package com.struc.facade;
+
+public class BillGenerator extends OrdersWorkers{
+
+	@Override
+	public void work() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String name() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
