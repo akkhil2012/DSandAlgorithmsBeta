@@ -1,1 +1,32 @@
 
+package com.struc.decorator;
+/*
+ * 
+ * The intent of this pattern is to add additional responsibilities dynamically to an object
+ * Simply a class that implements the interface of the target class and uses composition to decorate calls
+ * to the target
+ * 
+ * Alternative to the subclassing........
+ * 
+ * To add resposibilities at RUNTIME
+ * 
+ * In this example we are calling a Plain Pizza
+ */
+public class App {
+	
+	public static void main(String args[]){
+		
+		Pizza pizza = new PlainPizza();
+		System.out.println(" Calling the Simple class : Plain Pizza");
+		System.out.println(" ---- " + pizza.placeOrder());
+		pizza.giveFeedBack();
+		
+		System.out.println(" Calling after RunTime Decoration ");
+		pizza = new PizzaWithExtraCheese();
+		
+		System.out.println(" ----> " + pizza.placeOrder());
+		pizza.giveFeedBack();
+		
+	}
+
+}
