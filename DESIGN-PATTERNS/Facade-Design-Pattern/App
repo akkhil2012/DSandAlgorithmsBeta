@@ -1,1 +1,17 @@
 
+package com.struc.facade;
+
+public class App {
+
+	public static void main(String args[]){
+		
+		OrderFacade orderFacade = new OrderFacade();
+		
+		orderFacade.startNewDay();
+		orderFacade.processOrders();
+		orderFacade.endDay();
+	}
+	
+	
+}
+
