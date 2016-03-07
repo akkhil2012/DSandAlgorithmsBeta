@@ -1,0 +1,6 @@
+package com.behav.chain;
+
+public interface DispenseChain {
+	void setNextChain(DispenseChain nextChain);
+	void despenseCash();
+}
