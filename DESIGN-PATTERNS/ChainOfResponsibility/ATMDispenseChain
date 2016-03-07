@@ -1,0 +1,21 @@
+package com.behav.chain;
+
+public class ATMDispenseChain {
+
+	private DispenseChain chain;
+
+	public ATMDispenseChain(DispenseChain chain) {
+
+		this.chain = new Dollar50Despensor();
+
+		DispenseChain chain2 = new Dollar30Despensor();
+
+		this.chain.setNextChain(chain2);
+		chain2.setNextChain(new Dollar20Despensor());
+	}
+
+	public static void main(String args[]) {
+
+	}
+
+}
