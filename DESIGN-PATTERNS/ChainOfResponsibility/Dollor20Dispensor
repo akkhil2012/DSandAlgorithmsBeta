@@ -1,0 +1,17 @@
+package com.behav.chain;
+
+public class Dollar20Despensor implements DispenseChain {
+
+	@Override
+	public void despenseCash() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setNextChain(DispenseChain nextChain) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
