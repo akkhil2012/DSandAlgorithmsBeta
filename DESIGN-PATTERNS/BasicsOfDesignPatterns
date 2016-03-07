@@ -44,7 +44,34 @@ public DwarvenGoldmineFacade() {
  Adapter------> Design an existinh interface
  
   
+BEHAVIOURAL DESIGN PATTERNS:
+1.State Design Pattern:
+Container Object/Context has an internal state Object that defines current behaviour which changes to change the behaviour of object.
+This state Object can be changed to alter the behaviour, hence can be chaged at runtime.???
+Mammoth is Container Object:
 
+Mammoth has internal state that defines its behavior.
+public class Mammoth {
 
+  private State state;
+
+  public Mammoth() {
+    state = new PeacefulState(this);
+  }
+  
+public class PeacefulState implements State {
+
+  private Mammoth mammoth;
+
+  public PeacefulState(Mammoth mammoth) {
+    this.mammoth = mammoth;
+  }
+  
+  Context is the single interface presented to the outer world.
+  State Objects are Often Singleton.
+  
+  State Vs Bridge?????????
+  Starategy-------> Stable Startegy,
+  State ------->A Change in state of Context Object defines the Starategy to opt for.
 
 
