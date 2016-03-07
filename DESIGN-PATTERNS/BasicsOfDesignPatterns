@@ -1,7 +1,50 @@
-Adapter Pattern:
+Strauctural Design Patterns:
+
+1. Adapter Pattern:(Wrapper : wraps the existing class with new interface)
 Imcompatible Interface to be used is converted to interface expected by Client:
    Class Adapter:?
-   Object Adapter: Uses Composition to contain the Adaptee into the Adapter( AdapterClass ) Object.
+   Object Adapter: Uses Composition to contain the Adaptee(component that needs to adapt) into the Adapter( AdapterClass ) Object.
 Client(Captain)---->expects(BattleShip)-------->   
                ---->BattleShipFishingBoat(adapts the interface of the Adaptee + add functions of Adaptee)------->composes of Fishing Boat(Adaptee) as private
-Called by Client as: Captain captain = new Captain(new BattleFishingBoat());
+Called by Client/is coupled to new interface  as: Captain captain = new Captain(new BattleFishingBoat());
+
+Adapter---> after design and Bridge ---> Before
+Adapter --> Aggregates incompatible and Bridge ---> Segregate Implementations
+Adapter --> Different inteface, Proxy ---> Same , Decorator ---> Enhanced interfcae to Clients
+Facade ---> New interface defined, Adapter ---> Older interface
+
+2. Decorator:(SubClassing Alternative)+ Adding Responsibilities Dynamically + Wrapper(Target Object wrapped recursively)
+Uses same interface as Target + composition to decorate the calls to Target.
+SmartHostile(implements Hostile) is called from client passing Hostile older implementation(Troll that implements Hostile again) as constructor param.
+Hostile smart = new SmartHostile(troll);
+
+Decorator---> More transparent to Client
+Decorator and Proxy----> Both provide level of indirection with implementation keeping the reference to the implementing target.
+Decorator--> Upper/Skin changes and Strategy ----> Inner changes
+Composite can use both chain of responsibilty and Decorator.
+
+3.Facade: When system has large number of interdependent classes OR sourceCode is unavailable.????
+Wrapper/ high level interface with set of methods required by clients and are accessed on behalf of facade client
+public DwarvenGoldmineFacade() {
+    workers = new ArrayList<>();
+    workers.add(new DwarvenGoldDigger());
+    workers.add(new DwarvenCartOperator());
+    workers.add(new DwarvenTunnelDigger());
+  }
+ Promotes the decoupling of subsystem from clients.
+ Facade--->single Object represent entire system
+ FlyWeight---->Makes a lots of small Objects
+ Facade oftenly Singleton as usually only 1 Facade Object required.public DwarvenGoldmineFacade() {
+    workers = new ArrayList<>();
+    workers.add(new DwarvenGoldDigger());
+    workers.add(new DwarvenCartOperator());
+    workers.add(new DwarvenTunnelDigger());
+  }
+ Facade -----> creates new interface 
+ Adapter------> Design an existinh interface
+ 
+  
+
+
+
+
