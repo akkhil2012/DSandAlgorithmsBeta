@@ -1,6 +1,7 @@
 Adapter Pattern:
 Imcompatible Interface to be used is converted to interface expected by Client:
-   Class Adapter:
+   Class Adapter:?
    Object Adapter: Uses Composition to contain the Adaptee into the Adapter( AdapterClass ) Object.
-Clinet(Captain)---->expects(BattleShip)-------->   
-               ---->BattleShipFishingBoat------->composes of Fishing Boat(Adaptee) as private
+Client(Captain)---->expects(BattleShip)-------->   
+               ---->BattleShipFishingBoat(adapts the interface of the Adaptee + add functions of Adaptee)------->composes of Fishing Boat(Adaptee) as private
+Called by Client as: Captain captain = new Captain(new BattleFishingBoat());
