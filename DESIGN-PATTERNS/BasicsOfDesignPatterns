@@ -86,5 +86,20 @@ public class PeacefulState implements State {
   Algorithm behaviour is selected at runtime.
   Capture the abstraction in an interface, bury implementation details in derived classes
   
+  
+  CREATIONAL PATTERN:
+  1. Prototype:
+   To create the new objcst by cloning the prototype object
+   factory = new HeroFactoryImpl(new ElfMage(), new ElfWarlord(), new ElfBeast());
+    mage = factory.createMage();
+    warlord = factory.createWarlord();
+    beast = factory.createBeast();
+    The factory prototope objects are given as parameters.
+      public Mage clone() throws CloneNotSupportedException {
+    return new ElfMage();
+  }
+Factory----> Through Inheritence
+Prototype---> Through Delegation
+    
 
 
