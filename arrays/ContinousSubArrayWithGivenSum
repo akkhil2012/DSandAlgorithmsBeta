@@ -1,0 +1,25 @@
+package beta.array;
+
+public class SubArrayWithGivenSum {
+	public void subArraySum(int[] arr, int sum) {
+		int initial = 0;
+		int currentSum = 0;
+		int i = 0;
+		for (i = 1; i < arr.length - 1; i++) {
+			while (currentSum > sum && initial < i) {
+				currentSum -= arr[initial];
+				initial++;
+			}
+			if (currentSum == sum) {
+				System.out.println(" start index " + initial + " last index " + i);
+			}
+			if (i < arr.length - 1)
+				currentSum += arr[i];
+		}
+	}
+
+	public static void main(String args[]) {
+		int[] arr = { 1, 4, 20, 3, 10, 5 };
+		new SubArrayWithGivenSum().subArraySum(arr, 23);
+	}
+}
