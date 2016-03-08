@@ -1,0 +1,116 @@
+Container:
+var person = function(){};
+
+
+var Person = function (firstName) { // Define Class
+  this.firstName = firstName;
+  console.log('Person instantiated');
+};
+
+var person1 = new Person('Alice'); // Object: A class instance
+var person2 = new Person('Bob');
+
+// Show the firstName properties of the objects
+console.log('person1 is ' + person1.firstName); // logs "person1 is Alice"
+console.log('person2 is ' + person2.firstName); // logs "person2 is Bob"
+
+
+==============================================
+Define Method:
+
+person.prototype.sayHello = function(){
+
+  console.log("I am inside function " + this.firstName);	
+};
+
+
+person1.sayHello();// calling, function
+
+
+=================================================
+Properties are variables contained in a class and every instance of Object has those properties as are set in constructor so can be created with each instance.
+
+=================================================
+Inheritence:
+by assigning the instance of parent class to child class by Object.create(<PTOTOTYPE object>)
+
+function Student(subject){   // Student Constructor
+  this.subject = subject;
+}
+
+var student1 = new Student("Janet", "Applied Physics");
+
+student1.walk(); // calling method defined in the parent, person using prototype, need not to know how walk() is implemented in person: Encapsulation
+
+Student.prototype = Object.create(person.prototype);// Inheritence
+Student.prototype.sayHello = function(){
+........
+};
+
+
+Abstraction:???????????????
+
+Polymorphism: since all methods and properties are defined inside the prototype property, different classes can define different methods with same name;
+methods are soped to the class to which they are defined, expect are part of inheritence...
+
+=================
+Strict Mode: use strict; // does not allow to use undeclared variables.: global,local and function level
+
+ throw eror if variable beimg used is undefined OR if reserved keyword as public is used
+"use strict";
+var o = { p: 1, p: 2 }; // !!! syntax error
+
+=====================
+
+var obj = new Object(); OR var obj = {};
+Objects created using an object literal, or with new Object(), inherit from a prototype called Object.prototype.
+
+Protoype Person is created and  instance of prototype:
+function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	
+	
+	var newObject = new Person("akkhil",30);
+	var newObject1 = new Person("gupta",20);
+	
+	console.log(" new object age is " + newObject.age);
+	console.log(" second new object age is " + newObject1.name);
+	
+	
+All JavaScript objects (Date, Array, RegExp, Function, ....) inherit from the Object.prototype.
+
+
+
+
+[2,3,4,5].forEach(function(element,index,arrar){
+		
+		
+		console.log(" elemet --- " + element);
+	});
+	
+
+
+================================================
+
+Map.prototype.forEach()
+Set.prototype.forEach()
+Array.prototype.find()
+Array.prototype.map()
+Array.prototype.every()
+Array.prototype.some()
+
+================================================
+
+	Anonymous:
+		var a = 4;
+	var b = 5;
+	(function(){
+		var total = a+b;
+		//alert(total);
+		console.log("---" + total);
+	})();
+	
+	
+A closure is the combination of a function and the scope object in which it was created.	
