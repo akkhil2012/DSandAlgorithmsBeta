@@ -1,5 +1,13 @@
 Strauctural Design Patterns:
 
+
+S.O.L.I.D.
+S – Single-responsiblity principle
+O – Open-closed principle
+L – Liskov substitution principle
+I – Interface segregation principle
+D – Dependency Inversion Principle
+
 1. Adapter Pattern:(Wrapper : wraps the existing class with new interface)
 Imcompatible Interface to be used is converted to interface expected by Client:
    Class Adapter:?
@@ -73,5 +81,10 @@ public class PeacefulState implements State {
   State Vs Bridge?????????
   Starategy-------> Stable Startegy,
   State ------->A Change in state of Context Object defines the Starategy to opt for.
+  
+  Strategy:
+  Algorithm behaviour is selected at runtime.
+  Capture the abstraction in an interface, bury implementation details in derived classes
+  
 
 
