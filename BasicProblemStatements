@@ -29,6 +29,86 @@ Tree:
    
    Type of Traversals: Inorder, PreOrder and PostOrder( Recursive and Non-Recursive)
    
+   Maximum Element in Binary Tree
+   Maximum element without Recursion
+   Search an element in tree
+   Search without recursion
+   insert into tree
+   size of tree without recursion
+   revserse order printing
+   deleting a tree
+   Height withoout recursion
+   Deepest Node in Binary Tree
+   Number of leaves without recursion
+   number of full Nodes without Recursion
+   Number of half Nodes without Recursion
+   Check if both are structurally Identical
+   Diameter of BinaryTree
+   level with maximum sum in Tree
+   print all root to leaf paths
+   Existance of path with given sum
+   sum of all elements in Tree with/without recursion
+   convert tree to mirror
+   contruct tree from InOrder and PreOrder Traversal
+   Print all ancestors of Node in Tree
+   LCA in tree for two nodes
+   Zig-Zag trversal
+   Vertical Sum of binary Tree
+   No of tree possible of n Nodes
+   
+   
+   BST:
+   Find Min,Max in Binary Tree
+   Insert and Delete from tree
+   Check if tree is BST
+   Find K smallest element in Tree
+   Sorting the elements of Binary Tree
+   Sorted Array to BinaryTree
+   DLL to Balanced BST
+   BST to Circular LinkedList
+   sorted linkedlist to height balanced Binary Tree
+   Union and Intercestion of BinaryTrees
+   Print all elements within range K
+   
+  PriorityQueue:
+   insert
+   deleteMin/deleteMax
+   GetMin/GetMaximum
+   Kth Smallest and Kth Largest
+   Size/ HeapSort
+   Implement stack usig Heap
+   Kth Smallest element in Max Heap
+   Implement queue using Heap
+   
+  Sorting:
+  InternalSort/ External Sort
+  BubbleSort
+  Selection
+  Insertion
+  Shell
+  MergeSort
+  HeapSort
+  TreeSort
+  
+  LinearSortingAlgorithms:
+    CountingSort
+    BucketSort
+    RadixSort
+    Comparison of Sorting Algorithms
+    Topological Sort
+    
+  Searching:
+    Binary Search
+    
+  String Algorithms:
+   Robin-Karp
+   KMP
+   Boyce-Moore
+   SuffixTrees
+    
+  
+   
+   
    
  
  
