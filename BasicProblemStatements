@@ -1,0 +1,37 @@
+Stacks:
+  Balancing of Symbols
+  Infix-to-postfix conversion
+  Evaluation of postfix Conversion
+  
+  Implementation:
+  Simple Array Based Implementation
+  Dynamic Array Based
+  LinkedList Based
+  Comparison of Implementations:O(n)
+  
+Queue:
+ Why Circular Array?
+ Simple Circular Array Based Implementation
+ Dynamic Circular Array Based Implementation
+ LinkedList Implementation
+ 
+Tree:
+ Types of Binary Tree?
+ Basic Tree Operations:
+   Inserting an element to Tree
+   Deletion of element
+   Searching for element
+   Traversing the tree
+   Size of Tree
+   Height of Tree
+   level with max sum
+   Least Common Ancestors.
+   
+   Type of Traversals: Inorder, PreOrder and PostOrder( Recursive and Non-Recursive)
+   
+   
+ 
+ 
+ 
+ 
+ 
