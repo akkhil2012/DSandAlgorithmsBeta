@@ -1,0 +1,63 @@
+public class PrintSpirally{
+
+public void spiralOrder(Node<Integer> root) {
+
+		Stack<Node<Integer>> evenStack = new Stack<Node<Integer>>();
+		Stack<Node<Integer>> oddStack = new Stack<Node<Integer>>();
+
+		evenStack.push(root);
+
+		boolean evenLevel = true;
+
+		while ((evenLevel == true && !evenStack.isEmpty()) || !oddStack.isEmpty()) {
+			if (evenLevel) {
+				while (!evenStack.isEmpty()) {
+					Node<Integer> temp = evenStack.pop();
+					System.out.println(" ----> " + temp.data);
+					if (temp.right != null) {
+						oddStack.push(temp.right);
+					}
+
+					if (temp.left != null) {
+						oddStack.push(temp.left);
+					}
+
+				}
+			} else {
+				while (!oddStack.isEmpty()) {
+					Node<Integer> temp = oddStack.pop();
+					System.out.println("<---- " + temp.data);
+
+					if (temp.left != null) {
+						evenStack.push(temp.left);
+					}
+
+					if (temp.right != null) {
+						evenStack.push(temp.right);
+					}
+
+				}
+
+			}
+			evenLevel = !evenLevel;
+			System.out.println();
+		}
+
+	}
+	
+	public static void main(String args[]){
+	 Node root = new Node(13);
+		binaryTree.root = root;
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.right =  new Node(4);
+		root.left.left =  new Node(5);
+		root.right.right =  new Node(14);
+		root.right.left =  new Node(25);
+		
+		System.out.println(" Print Spirally " );
+		binaryTree.spiralOrder(binaryTree.root);
+	
+	
+	}
+	}
