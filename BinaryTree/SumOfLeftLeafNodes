@@ -1,0 +1,45 @@
+
+public class SumOfLeftLeafNodes{
+
+private boolean isLeafNode(Node<Integer> root){
+		if(root==null) return false;
+		
+		if(root.left==null && root.right==null)
+		  return true;
+		return false;
+		
+	}
+	
+	
+	public int sumOfLeftLeaves(Node<Integer> root) {
+		int sum=0;
+		if (root != null){
+		if (isLeafNode(root.left))
+			sum += root.left.data;
+		
+		sum += sumOfLeftLeaves(root.left);
+		sum += sumOfLeftLeaves(root.right);
+		}
+		return sum;
+	}
+	
+	public static void main(String args[]){
+	  Node root = new Node(1);
+		binaryTree.root = root;
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.right = new Node(5);
+		root.left.left = new Node(4);
+		root.left.left.right = new Node(8);
+		root.left.left.right.left = new Node(19);
+		
+		root.right.right = new Node(7);
+		root.right.left = new Node(10);
+
+	  System.out.println(" Sum of left leaves is "); 
+        int res = binaryTree.sumOfLeftLeaves(binaryTree.root);
+        
+        System.out.println(" "+ res);
+	}
+	
+	}
