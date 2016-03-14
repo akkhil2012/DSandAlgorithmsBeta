@@ -1,0 +1,28 @@
+public boolean checkIfIdenticalTrees(int[] arr1, int[] arr2, int first, int sec, int min, int max) {
+		int i, j;
+		for (i = first; i < arr1.length; i++) {
+			if (arr1[i] > min && arr1[i] < max) {
+				break;
+			}
+		}
+
+		for (j = sec; j < arr2.length; j++) {
+			if (arr2[j] > min && arr2[j] < max) {
+				break;
+			}
+		}
+
+		if (j == arr2.length && i == arr1.length)
+			return true;
+
+		if (j == arr2.length || i == arr1.length)
+			return false;
+
+		if (arr1[i] == arr2[j]){
+			return (checkIfIdenticalTrees(arr1, arr2, i+1, j+1, min, arr1[i])
+					&& checkIfIdenticalTrees(arr1, arr2, i+1, j+1, arr2[i], max));
+		}
+
+		return false;
+
+	}
