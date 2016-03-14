@@ -1,0 +1,153 @@
+package beta.binarySearchTree;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+
+class BinaryTree<T> {
+	public BSTreeNode<T> root;
+	BSTreeNode<T> newBSTreeNode;
+	BSTreeNode<T> currentBSTreeNode;
+
+	public BinaryTree() {
+		root = null;
+	}
+
+}
+
+class QueueBSTreeNode {
+	BSTreeNode treeBSTreeNode;
+	int level;
+
+	QueueBSTreeNode(BSTreeNode BSTreeNode, int level) {
+		this.treeBSTreeNode = BSTreeNode;
+		this.level = level;
+	}
+}
+
+class BSTreeNode<T> {
+	T data;
+	BSTreeNode<T> left;
+	BSTreeNode<T> right;
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+	public BSTreeNode() {
+
+	}
+
+	public BSTreeNode(T data) {
+		this.data = data;
+	}
+}
+
+public class BinaryTreeToBST {
+
+	public void convertToBST(BSTreeNode<Integer> root, int[] inOrder, int[] index) {
+
+		if (root == null)
+			return;
+
+		convertToBST(root.left, inOrder, index);
+		inOrder[index[0]] = root.data;
+		index[0] += 1;
+		convertToBST(root.right, inOrder, index);
+
+	}
+
+	private void changeBSTreeNodeValues(BSTreeNode<Integer> root, int[] inOrder, int[] index) {
+		if (root == null)
+			return;
+
+		changeBSTreeNodeValues(root.left, inOrder, index);
+		root.data = inOrder[index[0]];
+		index[0] += 1;
+		changeBSTreeNodeValues(root.right, inOrder, index);
+	}
+
+	public void convertBTreeToBST(BSTreeNode<Integer> root) {
+
+		int[] inOrder = new int[7];
+		int[] index = new int[1];
+
+		BSTreeNode<Integer>[] arr = new BSTreeNode[7];
+
+		convertToBST(root, inOrder, index);
+
+		Arrays.sort(inOrder);
+
+		// Arrays.sort(arr); Don't go with Arrays.sort as need to define own
+		// comparison strategy using comparable interface
+
+		for (int val : inOrder) {
+			System.out.println(" >>>-- " + val);
+		}
+
+		index[0] = 0;
+
+		changeBSTreeNodeValues(root, inOrder, index);
+
+		System.out.println(" Converting BT to BST ");
+
+		printTreeLevelOrder(root);
+
+	}
+
+	public void printTreeLevelOrder(BSTreeNode<Integer> root) {
+		if (root == null)
+			return;
+
+		LinkedList queue = new LinkedList();
+		queue.add(new QueueBSTreeNode(root, 0));
+
+		int maxLevelVisited = -1;
+
+		while (!queue.isEmpty()) {
+			QueueBSTreeNode currentNode = (QueueBSTreeNode) queue.remove();
+
+			if (currentNode.level > maxLevelVisited) {
+				maxLevelVisited = currentNode.level;
+				System.out.print("\nlevel-" + currentNode.level + " nodes: ");
+			}
+			System.out.print(" " + currentNode.treeBSTreeNode.data);
+
+			if (currentNode.treeBSTreeNode.left != null) {
+				queue.add(new QueueBSTreeNode(currentNode.treeBSTreeNode.left, currentNode.level + 1));
+			}
+
+			if (currentNode.treeBSTreeNode.right != null) {
+				queue.add(new QueueBSTreeNode(currentNode.treeBSTreeNode.right, currentNode.level + 1));
+			}
+		}
+	}
+
+	public static void main(String args[]) {
+
+		BinaryTree<Integer> binaryTree = new BinaryTree<Integer>();
+
+		BSTreeNode<Integer> root = new BSTreeNode<Integer>(13);
+		binaryTree.root = root;
+		root.left = new BSTreeNode(2);
+		root.right = new BSTreeNode(3);
+		root.left.right = new BSTreeNode(4);
+		root.left.left = new BSTreeNode(5);
+		root.right.right = new BSTreeNode(14);
+		root.right.left = new BSTreeNode(25);
+
+		System.out.println(" Actual Tree ");
+
+		BinaryTreeToBST binaryTreeToBST = new BinaryTreeToBST();
+
+		binaryTreeToBST.printTreeLevelOrder(binaryTree.root);
+
+		System.out.println(" Convert Binary Tree to BST ");
+
+		binaryTreeToBST.convertBTreeToBST(binaryTree.root);
+	}
+
+}
