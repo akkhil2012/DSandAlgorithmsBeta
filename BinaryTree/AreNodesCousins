@@ -1,0 +1,41 @@
+private boolean areSiblings(Node<Integer> node1,Node<Integer> node2,Node<Integer> root){
+		
+		if(root==null)return true;
+		if(root.left==null || root.right == null)return false;
+		if( (root.left.data==node1.data && root.right.data==node2.data) || (root.left.data==node2.data && root.right.data==node1.data))
+			return true;
+		
+		return areSiblings(node1,node2,root.left) || areSiblings(node1,node2,root.right);
+	}
+	
+	public boolean areNodesCousins(Node<Integer>  root,Node<Integer> node1,Node<Integer> node2){
+		if(node1==null || node2==null)
+			return false;
+		if(areSiblings(node1,node2,root))
+			return false;
+		int node1Level = getLevelOfNode(root,node1,1);
+		int node2Level = getLevelOfNode(root,node2,1);
+		if( node1Level == node2Level && node1Level != 0 )
+			return true;
+		return false;
+	}
+	
+	
+	
+	private int getLevelOfNode(Node<Integer> root,Node<Integer> node,int level){
+		if(root == null)return -1;
+		int lvl = 0;
+		if(node.data==root.data){
+			lvl =level;
+		//	level = 0;
+			return lvl;
+		}
+		int leftLevel = getLevelOfNode(root.left, node, level+1);
+		if(leftLevel !=0){
+			return leftLevel;
+		}
+		else
+		     return getLevelOfNode(root.right, node, level+1);
+		
+	}
+	
