@@ -89,7 +89,7 @@ public class PeacefulState implements State {
   
   CREATIONAL PATTERN:
   1. Prototype:
-   To create the new objcst by cloning the prototype object
+   To create the new objcst by copying the prototype object
    factory = new HeroFactoryImpl(new ElfMage(), new ElfWarlord(), new ElfBeast());
     mage = factory.createMage();
     warlord = factory.createWarlord();
@@ -100,6 +100,8 @@ public class PeacefulState implements State {
   }
 Factory----> Through Inheritence
 Prototype---> Through Delegation
+
+Cloning: circular reference deep cloning could be an issue
 =====================================================================================================================
 2. Builder:
   seperate the complex object creation from its repreentation?
