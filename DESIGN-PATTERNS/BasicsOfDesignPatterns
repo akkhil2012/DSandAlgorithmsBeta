@@ -100,6 +100,17 @@ public class PeacefulState implements State {
   }
 Factory----> Through Inheritence
 Prototype---> Through Delegation
-    
+=====================================================================================================================
+2. Builder:
+  seperate the complex object creation from its repreentation?
+  to build different immutable objects using same object building process
+  The Builder Pattern consists of a Builder, ConcreteBuilder, Director and Product.
+
+The Director object is responsible for the construction process of the complex object but delegates the actual creation and assembly to the Builder interface.
+The Builder object specifies the interface for creating parts of the complex object.
+The Product represents the complex object that is created by the ConcreteBuilder objects. The Product consists of multiple parts that are created separately by the ConcreteBuilder objects.
+The ConcreteBuilder objects create and assemble the parts that make up the Product through the Builder interface.
+Using builder pattern to create immutable class is a good approach when the number of arguments in the Constructor is more that can cause confusion in their ordering
+======================================================================================================================    
 
 
