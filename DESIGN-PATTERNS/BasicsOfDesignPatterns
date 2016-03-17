@@ -114,5 +114,7 @@ The Product represents the complex object that is created by the ConcreteBuilder
 The ConcreteBuilder objects create and assemble the parts that make up the Product through the Builder interface.
 Using builder pattern to create immutable class is a good approach when the number of arguments in the Constructor is more that can cause confusion in their ordering
 ======================================================================================================================    
-
+3.Object Pool: when createing the stateless object is expensive ans to be used by several Client as DB Connection
+and needed for short time period . When is Object creation considered expensive: When its creation consumes a lot of memory which in turn makes program run slow.
+4. singleton class: As resoucre manager, logger , configuration
 
