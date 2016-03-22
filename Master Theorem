@@ -1,0 +1,13 @@
+Let a  1 and b>1 be constants, and let f .n/ be a nonnegative function defined
+on exact powers of b. A function g.n/ defined over exact powers of b by
+g.n/ D
+log
+Xb n1
+jD0
+aj f .n=bj / (4.22)
+has the following asymptotic bounds for exact powers of b:
+1. If f .n/ D O.nlogb a/ for some constant >0, then g.n/ D O.nlogb a/.
+2. If f .n/ D ‚.nlogb a/, then g.n/ D ‚.nlogb a lg n/.
+3. If af .n=b/  cf .n/ for some constant c<1 and for all sufficiently large n,
+then g.n/ D ‚.f .n//.
+Pr
