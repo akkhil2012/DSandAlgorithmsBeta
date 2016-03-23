@@ -1,0 +1,75 @@
+package beta.linkedlist;
+
+public class AddNumbersLinkedList{
+	public Node<Integer> addLists(Node<Integer> first,Node<Integer> sec,int carry){
+		
+		if(first==null && sec==null){
+			if(carry>0)
+				return new Node<Integer>(carry);
+			return null;
+		}
+		
+		
+		int val1 = (first!=null)?first.nData:0;
+		int val2 = (sec!=null)?sec.nData:0;
+		
+		int sum = (val1+val2+carry)%10;
+		carry = (val1+val2+carry)/10;
+		
+		Node<Integer> curr = new Node<Integer>(sum);
+		
+		Node<Integer> fnext = (first!=null)?first.next:null;
+		
+		Node<Integer> snext = (sec !=null)?sec.next:null;
+		
+		curr.next =  addLists(fnext, snext, carry);
+		
+		return curr;
+		
+	}
+	
+	
+	
+	public static void main(String args[]){
+		
+		
+		AddNumbersLinkedList addNumbersLinkedList = new AddNumbersLinkedList();
+		
+		LinkedList<Integer> firstList = new LinkedList<Integer>();
+		
+		LinkedList<Integer> secList = new LinkedList<Integer>();
+		
+		
+		firstList.addNode(1);
+		firstList.addNode(7);
+		firstList.addNode(9);
+		firstList.addNode(9);
+		firstList.addNode(9);
+		
+		
+		secList.addNode(9);
+		secList.addNode(6);
+		secList.addNode(9);
+		secList.addNode(0);
+		secList.addNode(0);
+		secList.addNode(1);
+		
+		firstList.printList(firstList.first);
+		
+		System.out.println("----------------------------");
+		
+		firstList.printList(secList.first);
+		
+		Node newNode = addNumbersLinkedList.addLists(firstList.first,secList.first,0);
+		
+		LinkedList<Integer> newList = new LinkedList<Integer>();
+		
+		newList.first = newNode;
+		
+		System.out.println("----------------After Merge ------------");
+		
+		newList.printList(newList.first);
+		
+	}
+	
+}
