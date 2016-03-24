@@ -21,7 +21,6 @@ public class ReverseWordsInString {
 				l--;
 			}
 			i = k + 1;
-
 		}
 
 		String res = String.valueOf(chArray);
