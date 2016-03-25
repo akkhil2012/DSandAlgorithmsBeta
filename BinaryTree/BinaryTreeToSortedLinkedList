@@ -1,0 +1,143 @@
+package bets.tree;
+
+import java.util.Stack;
+
+
+
+//import beta.binaryTree.BinaryTree.Node;
+class Node{
+		int data;
+		Node left;
+		Node right;
+		public int getData() {
+			return data;
+		}
+		public void setData(int data) {
+			this.data = data;
+		}
+		public Node() {
+		}
+		public Node(int data) {
+			this.data = data;
+		}
+	}
+
+class BinaryTree {
+	public Node root;
+	Node newNode;
+	Node currentNode;
+
+	public BinaryTree() {
+		root = null;
+	}
+}
+	 
+
+
+
+public class BinaryTreeToSorted {
+
+  public Node toSortedLinkList(Node root){
+      if(root == null){
+          return null;
+      }
+      
+      Node left = toSortedLinkList(root.left);
+      Node right = toSortedLinkList(root.right);
+      
+      root.left = null;
+      root.right = null;
+      root = merge(left,root);
+      return merge(root,right);
+  }
+  
+  private Node merge(Node head1,Node head2){
+      if(head1 == null){
+          return head2;
+      }
+      if(head2 == null){
+          return head1;
+      }
+      if(head1.data <= head2.data){
+          head1.right = merge(head1.right, head2);
+          return head1;
+      }else{
+          head2.right = merge(head1,head2.right);
+          return head2;
+      }
+  }
+  
+  private void print(Node root){
+      while(root != null){
+          System.out.print(root.data + " ");
+          root = root.right;
+      }
+  }
+  
+  public void displayBinaryTree(Node root) {
+		Stack globalStack = new Stack();
+		globalStack.push(root);
+		int emptyLeaf = 32;
+		boolean isRowEmpty = false;
+		System.out.println("****......................................................****");
+		while (isRowEmpty == false) {
+
+			Stack localStack = new Stack();
+			isRowEmpty = true;
+			for (int j = 0; j < emptyLeaf; j++)
+				System.out.print(' ');
+			while (globalStack.isEmpty() == false) {
+				Node temp = (Node) globalStack.pop();
+				if (temp != null) {
+					System.out.print(" ** " + temp.data);
+					localStack.push(temp.left);
+					localStack.push(temp.right);
+					if (temp.left != null || temp.right != null)
+						isRowEmpty = false;
+				} else {
+					System.out.print("--");
+					localStack.push(null);
+					localStack.push(null);
+				}
+				for (int j = 0; j < emptyLeaf * 2 - 2; j++)
+					System.out.print(' ');
+			}
+			System.out.println();
+			emptyLeaf /= 2;
+			while (localStack.isEmpty() == false)
+				globalStack.push(localStack.pop());
+		}
+		System.out.println("****......................................................****");
+	}
+  
+  
+public static void main(String args[]){
+      
+      BinaryTree tree = new BinaryTree();
+      
+      tree.root = new Node(1);
+      tree.root.left = new Node(2);
+      tree.root.right = new Node(3);
+      tree.root.left.left = new Node(4);
+      tree.root.left.right = new Node(5);
+      tree.root.right.left = new Node(6);
+      tree.root.right.right = new Node(7);
+      
+     
+      tree.root.right.right = new Node(12);
+      tree.root.right.right.right = new Node(13);
+      tree.root.right.right.left = new Node(10);
+      
+      
+      
+      //BinaryTreeToSortedLinkList bt = new BinaryTreeToSortedLinkList();
+      BinaryTreeToSorted binaryTreeToSorted = new BinaryTreeToSorted();
+      
+      binaryTreeToSorted.displayBinaryTree(tree.root);
+      
+      Node root = binaryTreeToSorted.toSortedLinkList(tree.root);
+      binaryTreeToSorted.print(root);
+     // binaryTree.displayBinaryTree(root);
+      
+  }
+}
