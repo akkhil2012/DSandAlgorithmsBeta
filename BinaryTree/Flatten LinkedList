@@ -1,0 +1,42 @@
+package beta.binaryTree;
+
+import beta.binaryTree.BinaryTree.Node;
+import beta.linkedlist.LinkedList;
+
+public class FlattenTree {
+
+	public Node<Integer> flattenList(Node<Integer> root) {
+		Node<Integer> temp = root;
+		while (root != null) {
+			if (root.left != null) {
+				Node<Integer> temp2 = root.left;
+				while (temp2.right != null) {
+					temp2 = temp2.right;
+				}
+				temp2.right = temp.right;
+				temp.right = temp.left;
+				temp.left = null;
+			}
+			root = root.right;
+		}
+		return root;
+	}
+
+	public static void main(String args[]) {
+		BinaryTree<Integer> binaryTree = new BinaryTree<Integer>();
+		binaryTree.root = new Node<Integer>(1);
+		binaryTree.root.left = new Node<Integer>(2);
+		binaryTree.root.right = new Node<Integer>(5);
+		binaryTree.root.left.left = new Node<Integer>(3);
+		binaryTree.root.left.right = new Node<Integer>(4);
+		binaryTree.root.right.right = new Node<Integer>(6);
+
+		binaryTree.displayBinaryTree(binaryTree.root);
+
+		System.out.println(" After flattenig the tree ");
+
+		Node<Integer> newNode = new FlattenTree().flattenList(binaryTree.root);
+
+		binaryTree.displayBinaryTree(newNode);
+	}
+}
