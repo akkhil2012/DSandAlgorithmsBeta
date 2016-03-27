@@ -1,0 +1,25 @@
+public Node<Integer> preOrderToBinaryTree(Node<Integer> root, int[] arr) {
+		int i = 0;
+		root = new Node<Integer>(arr[0]);
+		Node<Integer> masterNode = root;
+		int max = arr[i];
+		int min = arr[i];
+		while (i < arr.length - 1) {
+			if (arr[i + 1] > max) {
+				min = max;
+				max = arr[i + 1];
+				Node<Integer> temp1 = new Node<Integer>(arr[i + 1]);
+				masterNode.right = temp1;
+				masterNode = masterNode.right;
+				i++;
+			} else if (arr[i + 1] < min) {
+				max = min;
+				min = arr[i + 1];
+				Node<Integer> temp2 = new Node<Integer>(arr[i + 1]);
+				root.left = temp2;
+				root = root.left;
+				i++;
+			}
+		}
+		return masterNode;
+	}
