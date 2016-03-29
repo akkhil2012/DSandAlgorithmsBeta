@@ -148,7 +148,11 @@ to be called from different client, means there could be many different client c
  1.Concrete implementation is removed from client code.
  2.By Encapsulating the Object creation at only one place, change of code for modification is restricted to that specific area.
  Static Method Vs Simple Factory?
- 
+Write a class to implement interface: Not only implementing interface BUT could also be a concfete class implementing a method from
+a supertype that could be clss/interface
+
+
+
    
 
 
