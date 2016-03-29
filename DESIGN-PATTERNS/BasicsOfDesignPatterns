@@ -151,6 +151,47 @@ to be called from different client, means there could be many different client c
 Write a class to implement interface: Not only implementing interface BUT could also be a concfete class implementing a method from
 a supertype that could be clss/interface
 
+1. case: When the Pizza Store is Single
+public class PizzaStore{
+   SimplePizzaFactory factory; // HAS-A Composition // Reference to Interface
+   
+   public PizzaStore(SimplePizzaFactory factory){
+     this.factory = factory;
+   }
+
+   public Pizza orderPizza(String type){
+      Pizza pizza;// Reference to interface /Abstract Class
+      pizza = factory.createPizza(type);// Code to be moved from concrete implementation from here to another Object(Factory)
+      // This is the part to be Encapsulated so that futher modifications will be restricted to this code itself
+      pizza.prepare();//Remains as earlier, where we had the concrete implementations
+   }
+ }
+ 
+ class abstract Pizza{
+  abstract createPizza();
+ }
+ 
+ class SimplePizzaFactory{
+   public Pizza createPizza(String type){// Return Interface to Object Called Pizza
+     if(type==""){
+     /*********************/
+     }elseif(type=""){
+     /*******************/
+     }
+ }
+ }
+ 
+ 
+ 
+ 2. Case: When the Pizza Stores are Different ,so need to abstract the method and have concrete implementations in 
+   different classes.(Abstract Factory Pattern)
+ public abstract class PizzaStore{//Defined Abstract so that implementations with be the type of factory
+ 
+ 
+ 
+ 
+ }
+
 
 
    
