@@ -46,7 +46,7 @@ Decorators have same supertype as objects they decorate and hence a decorated ob
 and we can decorate the objects at runtime???
 The Decorator Pattern attaches additional responsibilities to an object dynamically.
 Decorators provide a flexible alternative to subclassing for extending functionality.
-
+Composition and Delegation: USed to add new behaviours at runtime
 
 
 3.Facade: When system has large number of interdependent classes OR sourceCode is unavailable.????
