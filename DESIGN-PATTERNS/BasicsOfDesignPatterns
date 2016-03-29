@@ -40,6 +40,13 @@ Decorator---> More transparent to Client
 Decorator and Proxy----> Both provide level of indirection with implementation keeping the reference to the implementing target.
 Decorator--> Upper/Skin changes and Strategy ----> Inner changes
 Composite can use both chain of responsibilty and Decorator.
+Closed for Modification and Open for extension: As Subject can be extened in Observer pattern by adding new Observer without code change in Subject
+Decorator Pattern is Wrapper of sme Type.
+Decorators have same supertype as objects they decorate and hence a decorated object can be passed instead of the original Object
+and we can decorate the objects at runtime???
+
+
+
 
 3.Facade: When system has large number of interdependent classes OR sourceCode is unavailable.????
 Wrapper/ high level interface with set of methods required by clients and are accessed on behalf of facade client
@@ -153,7 +160,12 @@ The objects become parts of a chain and the request is sent from one object to a
   its depedents are notified and updated.
   Subject and Observers are loosely coupled as when we need to add a new observer we simply need to make that class implement the
   Observer Interface as Subject will notify changes to all the observers whosoever is implementing that Observr interface.
-  <<Observable>>
+  <<Observable>><--- ObserverableImpl(Subject)
+  <<Observer>><--- ObserverImpl(Observer Classes)
+  Observable(Subject) are loosely coupled to Observer as only knws that the observers implements the ObserverImpl and NOT the
+  implementation details.
+  
+  
   
 9.Strategy:
   Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
