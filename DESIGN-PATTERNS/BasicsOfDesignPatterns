@@ -1,3 +1,10 @@
+
+1. Favour composition over Inheritence(HAS A better than IS A)
+   Encapsulates a falimly of algorithms with their own set of classes
+   change behavious at runtime.as long as object we are composing are implementing the right interface (Code to interface)
+   Defining Interface reference in the class a Composotion / Coupling???
+
+
 Strauctural Design Patterns:
 
 
