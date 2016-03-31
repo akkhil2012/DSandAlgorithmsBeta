@@ -135,6 +135,7 @@ Using builder pattern to create immutable class is a good approach when the numb
 3.Object Pool: when createing the stateless object is expensive ans to be used by several Client as DB Connection
 and needed for short time period . When is Object creation considered expensive: When its creation consumes a lot of memory which in turn makes program run slow.
 4. singleton class: As resoucre manager, logger , configuration
+   Types: Class Adapter Vs Object Adapter( where we encapsulate the Adptee in the Traget/ expected interface by client)
 5. Factory Method:
    new means instantiating a concreate class
    By Coding to interface, the class will work with any new classes implementing that classes through Polymorphism.
