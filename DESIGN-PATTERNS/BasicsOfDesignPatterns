@@ -206,6 +206,9 @@ http://se.cs.depaul.edu/Java/chap10.html: maze game
                                                        reading data from DB
                                                        
 2.Singleton: Logger , Configuration class
+  Different class loaders can cause two class to get loaded as each classloader is associated with a namespace.
+  Double Check Locking implementaion: to avoid the overhead of using a class level lock every time the method, hence
+  u
 3.Factory Pattern: refers to the newly created object through a common interface
 4. Factory Method:????
 5.Builder: the creation algorithm of a complex object is independent from the parts that actually compose the object
