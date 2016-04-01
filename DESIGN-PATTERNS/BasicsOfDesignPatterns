@@ -69,6 +69,11 @@ public DwarvenGoldmineFacade() {
  Facade -----> creates new interface 
  Adapter------> Design an existinh interface
  
+ 
+ 
+ 
+ 
+ 
   
 BEHAVIOURAL DESIGN PATTERNS:
 1.State Design Pattern:
@@ -134,7 +139,67 @@ Using builder pattern to create immutable class is a good approach when the numb
 ======================================================================================================================    
 3.Object Pool: when createing the stateless object is expensive ans to be used by several Client as DB Connection
 and needed for short time period . When is Object creation considered expensive: When its creation consumes a lot of memory which in turn makes program run slow.
+public class OliphauntPool extends ObjectPool<Oliphaunt> {
+
+  @Override
+  protected Oliphaunt create() {
+    return new Oliphaunt();
+  }
+  
+  public abstract class ObjectPool<T> {
+
+  private HashSet<T> available = new HashSet<>();
+  private HashSet<T> inUse = new HashSet<>();
+
+  protected abstract T create();
+
+  /**
+   * Checkout object from pool
+   */
+  public synchronized T checkOut() {
+    if (available.size() <= 0) {
+      available.add(create());
+    }
+    T instance = available.iterator().next();
+    available.remove(instance);
+    inUse.add(instance);
+    return instance;
+  }
+
+  public synchronized void checkIn(T instance) {
+    inUse.remove(instance);
+    available.add(instance);
+  }
+
+
 4. singleton class: As resoucre manager, logger , configuration
+  a).private static final IvoryTower INSTANCE = new IvoryTower();
+  Singleton class. Eagerly initialized static instance guarantees thread safety.
+  b).
+  public  static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
+
+    if (instance == null) {
+      instance = new ThreadSafeLazyLoadedIvoryTower();
+    }
+
+    return instance;
+  }
+  Thread-safe Singleton class. The instance is lazily initialized and thus needs synchronization
+  mechanism.
+  c).if (result == null) {
+      synchronized (ThreadSafeDoubleCheckLocking.class) {
+        result = instance;
+        if (result == null) {
+          instance = result = new ThreadSafeDoubleCheckLocking();
+        }
+      }
+    }
+    Double check locking
+    The Double checked pattern is used to avoid obtaining the lock everytime the code is executed, 
+   d).Enum based???? 
+
+
+
    Types: Class Adapter Vs Object Adapter( where we encapsulate the Adptee in the Traget/ expected interface by client)
 5. Factory Method:
    new means instantiating a concreate class
