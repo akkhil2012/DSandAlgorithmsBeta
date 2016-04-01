@@ -89,7 +89,22 @@ public class Mammoth {
   public Mammoth() {
     state = new PeacefulState(this);
   }
-  
+
+  /**
+   * Makes time pass for the mammoth
+   */
+  public void timePasses() {
+    if (state.getClass().equals(PeacefulState.class)) {
+      changeStateTo(new AngryState(this));
+    } else {
+      changeStateTo(new PeacefulState(this));
+    }
+  }
+
+  private void changeStateTo(State newState) {
+    this.state = newState;
+    this.state.onEnterState();
+  }
 public class PeacefulState implements State {
 
   private Mammoth mammoth;
@@ -136,6 +151,51 @@ The Builder object specifies the interface for creating parts of the complex obj
 The Product represents the complex object that is created by the ConcreteBuilder objects. The Product consists of multiple parts that are created separately by the ConcreteBuilder objects.
 The ConcreteBuilder objects create and assemble the parts that make up the Product through the Builder interface.
 Using builder pattern to create immutable class is a good approach when the number of arguments in the Constructor is more that can cause confusion in their ordering
+abstract class PizzaBuilder {
+  protected Pizza pizza;
+
+  public Pizza getPizza() { return pizza; }
+  public void createNewPizzaProduct() { pizza = new Pizza(); }
+
+  public abstract void buildDough();
+  public abstract void buildSauce();
+  public abstract void buildTopping();
+}
+
+/* "ConcreteBuilder" */
+class HawaiianPizzaBuilder extends PizzaBuilder {
+  public void buildDough()   { pizza.setDough("cross"); }
+  public void buildSauce()   { pizza.setSauce("mild"); }
+  public void buildTopping() { pizza.setTopping("ham+pineapple"); }
+}
+class Waiter {
+  private PizzaBuilder pizzaBuilder;
+
+  public void setPizzaBuilder(PizzaBuilder pb) { pizzaBuilder = pb; }
+  public Pizza getPizza() { return pizzaBuilder.getPizza(); }
+
+  public void constructPizza() {
+    pizzaBuilder.createNewPizzaProduct();
+    pizzaBuilder.buildDough();
+    pizzaBuilder.buildSauce();
+    pizzaBuilder.buildTopping();
+  }
+}
+
+/* A customer ordering a pizza. */
+class BuilderExample {
+  public static void main(String[] args) {
+    Waiter waiter = new Waiter();
+    PizzaBuilder hawaiian_pizzabuilder = new HawaiianPizzaBuilder();
+    PizzaBuilder spicy_pizzabuilder = new SpicyPizzaBuilder();
+
+    waiter.setPizzaBuilder( hawaiian_pizzabuilder );
+    waiter.constructPizza();
+
+    Pizza pizza = waiter.getPizza();
+  }
+}
+//Pizza is the main Object created and PizzaBuilder is the Builder
 ======================================================================================================================    
 3.Object Pool: when createing the stateless object is expensive ans to be used by several Client as DB Connection
 and needed for short time period . When is Object creation considered expensive: When its creation consumes a lot of memory which in turn makes program run slow.
@@ -285,14 +345,11 @@ http://se.cs.depaul.edu/Java/chap10.html: maze game
   Facade: ----------> Makes an interface simpler.
   Facade and Adapter both are wrappers.but facade decouples subsystem from client by making interface easier . It doesnot encapsulates
   the subsystem classes but merely provide simple interfcae to functionality
-  
           
 6. ObjectPool: reuse and share objects that are expensive to create: DB Connection.
-
 7. Chain Of Responsibility:
            It avoids attaching the sender of a request to its receiver, giving this way other objects the possibility of handling the request too.
 The objects become parts of a chain and the request is sent from one object to another across the chain until one of the objects will handle it
-
 8. Observer:
   Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically
   News Agency: Notify the Subscriber through Email,SMS etc
@@ -310,6 +367,35 @@ The objects become parts of a chain and the request is sent from one object to a
 9.Strategy:
   Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
   ROBOTactions: Angry, Aggressive, Happy
+  public interface DragonSlayingStrategy {
+
+  void execute();
+
+}
+public class MeleeStrategy implements DragonSlayingStrategy {
+
+  @Override
+  public void execute() {
+    System.out.println("With your Excalibur you severe the dragon's head!");
+  }
+}
+ DragonSlayer dragonSlayer = new DragonSlayer(new MeleeStrategy());
+    dragonSlayer.goToBattle();
+    System.out.println("Red dragon emerges.");
+    dragonSlayer.changeStrategy(new ProjectileStrategy());
+    dragonSlayer.goToBattle();
+  public class DragonSlayer {
+
+  private DragonSlayingStrategy strategy;
+
+  public DragonSlayer(DragonSlayingStrategy strategy) {
+    this.strategy = strategy;
+  }
+
+  public void changeStrategy(DragonSlayingStrategy strategy) {
+    this.strategy = strategy;
+  }
+
   
  10. Bridge:
  The intent of this pattern is to decouple abstraction from implementation so that the two can vary independently
