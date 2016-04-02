@@ -1,0 +1,81 @@
+package beta.tree.balanced;
+
+class AVLNode{
+	AVLNode left;
+	AVLNode right;
+	int height;
+	int data;
+	
+	AVLNode(int data){
+	 this.data = data;
+	}
+	
+	
+}
+
+public class AVLTree {
+
+	AVLNode root;
+	
+	boolean isLeft;
+	boolean isRight;
+	
+	public AVLTree() {
+		root=null;
+	}
+	
+	public AVLNode insertNode(int data,AVLNode newNode){
+		
+		
+		if(root==null)
+			 newNode = new AVLNode(data);
+		
+		else if(newNode.data<root.data){
+			newNode.left = insertNode(data, newNode.left);// Function being called recursively here 
+			if(newNode.left.height - newNode.right.height ==2){
+				if(data<newNode.left.data){
+					newNode = leftLeftRotate();
+				}else{
+					newNode = leftRightRotate();
+				}
+			}
+			
+		}else if (newNode.data>root.data){
+			newNode.right = insertNode(data, newNode.right);
+			if(newNode.right.height - newNode.left.height ==2){
+				if(data>newNode.right.data){
+					newNode = rightRightRotate();
+							
+				}else{
+					newNode = rightLeftRotate();
+				}
+			}
+		}
+		
+		
+		
+		return newNode;
+	}
+	
+	
+	private void leftLeftRotate(){
+		
+	}
+	
+	
+	private void rightRightRotate(){
+		
+	}
+
+	private void leftRightRotate(){
+	
+	}
+
+	private void rightLeftRotate(){
+	
+	}
+	
+	
+	
+	
+}
