@@ -1,0 +1,11 @@
+/*
+
+Proxy can be classified as:
+
+Remote Proxy: Proxy acts as the local representative to the Object that lives in Different JVM and proxy results in call transferred over the wire(invoked remotely using RMI)
+Virtual Proxy: A representative to Object that is expensive to create, defers the Object creation till actually needed once created the original object is accessed through proxy that simply delegates the call to actual subject.
+Protection Proxy: Provides access to method based on the caller.
+
+
+
+*/
