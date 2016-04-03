@@ -1,0 +1,10 @@
+/*Encapsulate interchangable behaviour into  seperate classes and uses delegation to decide the behaviour to use.
+Decide the states and the define the values for each state which is to map every state to class, for example for states BiddingStart, BiddingWon are different states which corresponds to classes encapsulating same behaviour.This i to localize the behaviour of each state into its Class.
+Define a State interface(or Abstract Class) that contains methods for every action in the State Machine(Context),thus Code to interface
+Implement the State Class for every State of a Machine.These classes define the behaviour when a Machine is in particular State.Thus closing each state from modification but State Machine open for extension by adding new state classes,thus Closed for modification but open for extension
+Move Conditional Statement from Context to the state classes(classes implementing the behaviour on state change),thus acheives Single Responsibility.
+"Allows the Object to alter its behavipur when internal state changes and the Object will appear to change the class, which is from client prospects seems to be different class serving the different behaviour but is the composition that actually plays behind"
+
+As a tradeOff, State Pattern leads to multiple classes, as each State Class for each newly Added State.
+State Transitions can be Controlled by  State Classes or Context Classes
+*/
