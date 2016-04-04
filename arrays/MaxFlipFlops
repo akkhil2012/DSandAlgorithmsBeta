@@ -1,0 +1,42 @@
+package beta.array;
+
+public class ZerosFlipFlops {
+	public int[] flipFlopsForMaxOnes(int[] arr, int k) {
+		int count = 0;
+		int max = 0;
+		int[] aux = new int[k];
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == 1) {
+				count = 1;
+				i++;
+				if (arr[i] == 1) {
+					count++;
+					continue;
+				} else {
+					// if (i != arr.length - 1) {
+					int p = 0;
+					while (k > 0 && i < arr.length - 1) {
+						count++;
+						if (arr[i] == 0) {
+							aux[p++] = i;
+							k--;
+						}
+						i++;
+					}
+					if (count > max)
+						max = count;
+				}
+			}
+		}
+		return aux;
+	}
+
+	public static void main(String args[]) {
+		int input[] = { 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1 };
+		ZerosFlipFlops fm = new ZerosFlipFlops();
+		int[] arr = fm.flipFlopsForMaxOnes(input, 1);
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i]);
+		}
+	}
+}
