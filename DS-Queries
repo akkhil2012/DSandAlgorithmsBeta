@@ -53,6 +53,8 @@ http://www.geeksforgeeks.org/to-find-smallest-and-second-smallest-element-in-an-
 http://www.geeksforgeeks.org/find-the-two-repeating-elements-in-a-given-array/
 http://www.geeksforgeeks.org/median-of-two-sorted-arrays/ in Logn
 Median of array of running numbers:
+https://www.careercup.com/question?id=5737921569095680
+Find first repeating element in array without hastable but but by arr[arr[i]]=-1 and thus firt negative number
 .......................
 
 Stack:
