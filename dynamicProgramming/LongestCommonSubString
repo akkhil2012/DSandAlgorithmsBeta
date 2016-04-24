@@ -1,0 +1,27 @@
+package com.dynamic;
+
+public class LongestCommonSubString {
+	public int longestCommonSubstring(char[] first, char[] sec) {
+		int n = first.length;
+		int m = sec.length;
+		int[][] temp = new int[n + 1][m + 1];
+		int max = 0;
+		for (int i = 1; i < n; i++) {
+			for (int j = 1; j < m; j++) {
+				if (first[i - 1] == sec[j - 1]) {
+					temp[i][j] = temp[i - 1][j - 1] + 1;
+					if (max < temp[i][j]) {
+						max = temp[i][j];
+					}
+				}
+			}
+		}
+		return max;
+	}
+
+	public static void main(String args[]) {
+		char str1[] = "OldSite:GeeksforGeeks.org".toCharArray();
+		char str2[] = "NewSite:GeeksQuiz.com".toCharArray();
+		System.out.println(new LongestCommonSubString().longestCommonSubstring(str1, str2));
+	}
+}
