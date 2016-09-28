@@ -1,0 +1,114 @@
+package com.practice.amazon;
+
+import java.util.Scanner;
+
+import com.interview.linklist.LinkList;
+
+
+
+class Linkedlist{
+	
+	Node head;
+	
+	public Linkedlist() {
+		head = null;
+	}
+	
+	
+	public  Node addNode(int data){
+		
+		Node newNode = new Node(data);
+		if(head==null) head = newNode;
+		else{
+			Node current = head;
+			while(current.next!=null){
+		    current = current.next;
+			}
+			current.next = newNode;
+		}
+		return newNode;
+	}
+	
+}
+
+class Node
+{
+	Node next;
+	int data;
+	
+	Node(int d)
+	{
+		data = d;
+		next = null;
+	}
+}
+
+public class DeleteEveryKthNodes {
+	
+	
+	
+	void modifyList(Node head,int k){
+		
+		Node current = head;
+		Node previous = null;
+		Node newHead = null;
+		if(current==null)return;
+		int count;
+		while (current != null) {
+			for (count = 1; count < k && current != null; count++) {
+				previous = current;
+				current = current.next; // 1--2--3--4--5
+			}
+
+			if (current != null) {
+				Node temp = current;
+				previous.next = current.next;
+				// current = null;
+				temp = null;
+				current = current.next;
+			}
+		}
+		
+		 current = head;
+		while(current!=null){
+			System.out.print(" "+current.data);
+			current = current.next;
+		}
+	}
+	
+	public static void main(String args[]) {
+		
+		
+	Linkedlist list = new Linkedlist();
+	
+	list.head = new Node(1);
+	list.head.next = new Node(2);
+	list.head.next.next = new Node(3);
+	list.head.next.next.next = new Node(4);
+	list.head.next.next.next.next = new Node(5);
+	
+	new DeleteEveryKthNodes().modifyList(list.head, 2);
+	//list.head.next.next.next.next = new Node(1);
+		
+	/*		Scanner scanner = new Scanner(System.in);
+			
+			System.out.println("--");
+			
+			
+			int testCases = scanner.nextInt();
+		
+			for(int i=0;i<testCases;i++){
+				Linkedlist list = new Linkedlist();
+				int nodesCount = scanner.nextInt();
+				while(nodesCount>0){
+					list.addNode(scanner.nextInt());
+					nodesCount--;
+				}
+				
+				
+			}
+		
+	}*/
+
+}
+}
