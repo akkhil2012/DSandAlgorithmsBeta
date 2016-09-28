@@ -1,0 +1,43 @@
+package src.com.recursion;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class FindMatchesExample {
+
+	private String encodeString(String pattern) {
+		StringBuffer encode = new StringBuffer();
+
+		Map<Character, Integer> mp = new HashMap<>();
+		int i = 0;
+		for (int j = 0; j < pattern.length(); j++) {
+
+			if (mp.containsKey(pattern.charAt(j))) {
+				mp.put(pattern.charAt(j), i++);
+			} else {
+				mp.put(pattern.charAt(j), 1);
+			}
+			encode.append(mp.get(pattern.charAt(j)));
+
+		}
+		return encode.toString();
+	}
+
+	void findMatches(String pattern, String[] text) {
+		int pattLength = pattern.length();
+		String encode = encodeString(pattern);
+
+		for (String word : text) {
+			if (word.length() == pattLength && encode == encodeString(word))
+				System.out.println(" " + word);
+		}
+
+	}
+
+	public static void main(String args[]) {
+		String pattern = "foo";
+		String[] text = { "abb", "abc", "xyz", "xyy" };
+
+		new FindMatchesExample().findMatches(pattern, text);
+	}
+}
