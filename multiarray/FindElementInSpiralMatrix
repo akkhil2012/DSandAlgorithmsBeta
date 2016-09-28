@@ -1,0 +1,75 @@
+package com.amazon;
+
+public class FindKelementSpirally {
+
+	int findKElement(int[][] matrix, int n, int m, int k) {
+		int element = 0;
+
+		if (k > m * n)
+			return -1;
+
+		int left = 0;
+		int right = matrix[0].length - 1;
+
+		int top = 0;
+		int bottom = matrix.length - 1;
+
+		int count = 1;
+
+		while (top <= bottom && left <= right) {
+
+			for (int j = left; j <= right; j++) {
+				if (count == k)
+					return matrix[top][j];
+				count++;
+
+			}
+			top++;
+
+			for (int j = top; j <= bottom; j++) {
+
+				if (count == k)
+					return matrix[j][right];
+				count++;
+
+			}
+			right--;
+
+			for (int j = right; j >= left; j--) {
+
+				if (count == k)
+					return matrix[bottom][j];
+				count++;
+
+			}
+			bottom--;
+
+			for (int j = bottom; j >= top; j--) {
+				if (count == k)
+					return matrix[j][left];
+				count++;
+
+			}
+
+		}
+
+		return element;
+	}
+
+	public static void main(String args[]) {
+
+		int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+
+		FindKelementSpirally findKelementSpirally = new FindKelementSpirally();
+
+		/*
+		 * findKelementSpirally.findKElement(matrix,matrix.length,
+		 * matrix[0].length,6);
+		 */
+
+		System.out.println(
+				" Element is  " + findKelementSpirally.findKElement(matrix, matrix.length, matrix[0].length, 8));
+
+	}
+
+}
