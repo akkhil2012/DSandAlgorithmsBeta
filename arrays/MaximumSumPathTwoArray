@@ -1,0 +1,53 @@
+package src.com.recursion;
+
+public class MaximmSumPathTwoArray {
+
+	int maxPathSum(int ar1[], int ar2[], int m, int n) {
+		int sum = 0;
+
+		int i = 0;
+		int j = 0;
+
+		int firstSum = 0;
+		int secSum = 0;
+		while (i < m && j < n) {
+			if (ar1[i] < ar2[j]) {
+				firstSum += ar1[i++];
+			} else if (ar1[i] > ar2[j])
+				secSum += ar2[j++];
+			else {
+				sum += Math.max(firstSum, secSum);
+
+				firstSum = 0;
+				secSum = 0;
+
+				while (i < m && j < n && ar1[i] == ar2[j]) {
+					sum = sum + ar1[i++];
+					j++;
+				}
+
+			}
+		}
+
+		while (i < m)
+			firstSum += ar1[i++];
+
+		// Add remaining elements of ar2[]
+		while (j < n)
+			secSum += ar2[j++];
+
+		sum += Math.max(firstSum, secSum);
+
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		MaximmSumPathTwoArray sumpath = new MaximmSumPathTwoArray();
+		int ar1[] = { 2, 3, 7, 10, 12, 15, 30, 34 };
+		int ar2[] = { 1, 5, 7, 8, 10, 15, 16, 19 };
+		int m = ar1.length;
+		int n = ar2.length;
+		System.out.println("Maximum sum path is :" + sumpath.maxPathSum(ar1, ar2, m, n));
+	}
+
+}
