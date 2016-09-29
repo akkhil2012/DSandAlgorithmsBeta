@@ -1,0 +1,104 @@
+package com.searching;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.rowset.RowSetProvider;
+
+
+
+
+
+class BTrie{
+	BTNode root;
+	
+	BTrie(){
+		root = new BTNode();
+	}
+	boolean insertNode(int[] row){
+		BTNode current = root;
+		for(int i=0;i<row.length;i++){
+			int val = row[i];
+			BTNode node = current.children.get(row[i]);
+			if(node==null){
+				
+			  node = new BTNode();
+			  current.children.put(row[i], node);
+			}else{
+				current = node;
+			
+			}
+			//return false;
+		}
+		if(current.idEndOfCol!=true)return false;
+		return current.idEndOfCol;
+	}
+	
+	/*public boolean search(int[] row){// Full String Search
+		BTNode current = root;
+		for(int i=0;i<row.length;i++){
+			int ch = row[i];
+			BTNode node = current.children.get(ch);
+			if(node==null)
+				return false;
+			current = node;
+		}
+		return current.idEndOfCol;
+	}*/
+	
+	
+	
+	
+}
+
+
+class BTNode{
+	boolean idEndOfCol;
+	//BTNode[] child = new BTNode[2];
+	Map<Integer,BTNode> children;
+	BTNode(){
+		idEndOfCol = false;
+		children = new HashMap<>();
+	}
+	 
+}
+
+public class UniqueRowInMatrix {
+	
+void printRow(int[][] matrix,int row){
+		
+		for(int j=0;j<matrix[0].length;j++){
+			System.out.println(" "+ matrix[row][j]);
+		}
+		
+	}
+
+	public void findUniqueRow(int[][] matrix){
+		
+		BTrie trie = new BTrie();
+		for(int i=0;i<matrix.length;i++){
+			if(!trie.insertNode(matrix[i]))
+				printRow(matrix,i);
+		}
+		
+		
+	}
+	
+	public static void main(String args[]) {
+		
+		UniqueRowInMatrix matrixSample 
+		  = new UniqueRowInMatrix();
+		
+		int[][] matrix = {{0, 1, 0, 0, 1},
+		        {1, 0, 1, 1, 0},
+		        {0, 1, 0, 0, 1},
+		        {1, 0, 1, 0, 0}
+		    };
+		//BTrie bTrie = new BTrie();
+		
+		
+		
+		matrixSample.findUniqueRow(matrix);
+	}
+
+}
