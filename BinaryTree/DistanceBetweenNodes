@@ -1,0 +1,110 @@
+package com.tree;
+
+class BinaryTree {
+	Node root;
+	Node newNode;
+	Node currentNode;
+
+	public BinaryTree() {
+		root = null;
+	}
+}
+
+class Node {
+	int data;
+	Node left;
+	Node right;
+
+	public int getData() {
+		return data;
+	}
+
+	public void setData(int data) {
+		this.data = data;
+	}
+
+	public Node() {
+
+	}
+
+	public Node(int data) {
+		this.data = data;
+	}
+}
+
+public class DistanceBetweenNodes {
+
+	Node findDistUtil(Node root, int n1, int n2, int d1, int d2, int dis, int lvl) {
+
+		if (root == null)
+			return null;
+
+		if (root.data == n1 || root.data == n2)
+			return root;
+
+		Node left_lca = findDistUtil(root.left, n1, n2, d1 + 1, d2 + 1, dis, lvl + 1);
+
+		Node right_lca = findDistUtil(root.right, n1, n2, d1 + 1, d2 + 1, dis, lvl + 1);
+
+		if (left_lca != null && right_lca != null) {
+			dis = d1 + d2 - 2 * lvl;
+			return root;
+		}
+
+		return (left_lca != null) ? left_lca : right_lca;
+	}
+
+	public int findDistance(Node root, int n1, int n2) {
+
+		int dis1 = -1;
+		int dis2 = -1;
+		int dis = 0;
+
+		Node lca = findDistUtil(root, n1, n2, dis1, dis2, dis, 1);
+
+		if (dis1 != -1 && dis2 != -1)// if both are NOT null means root is the ancestor
+			return dis;
+
+		if (dis1 != -1)
+			return findLevel(lca, n2, 0);// if n1 is present /ancestor than find
+											// level for node n2
+
+		if (dis2 != -1)
+			return findLevel(lca, n1, 0);
+
+		return dis;
+
+	}
+
+	private int findLevel(Node root, int k, int level) {
+		if (root == null)
+			return -1;
+
+		if (root.data == k)
+			return level;
+
+		int l = findDistance(root.left, k, level + 1);
+
+		return (l != -1) ? l : findLevel(root.right, k, level + 1);
+
+	}
+
+	public static void main(String args[]) {
+		BinaryTree tree = new BinaryTree();
+
+		Node root = new Node(1);
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.left = new Node(4);
+		root.left.right = new Node(5);
+		root.right.left = new Node(6);
+		root.right.right = new Node(7);
+		root.right.left.right = new Node(8);
+
+		DistanceBetweenNodes distance = new DistanceBetweenNodes();
+		
+		
+		System.out.println(" Distance between two Nodes " + distance.findDistance(root, 4, 6));
+
+	}
+}
